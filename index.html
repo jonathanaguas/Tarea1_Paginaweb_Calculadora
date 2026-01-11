@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Estándar</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Tareas</a></li>
+      <li><a href="#">Galería</a></li>
+      <li><a href="#">Contáctos</a></li>
+    </ul>
+  </nav>
+<div class="calculadora-container">
+    <h1>Bienvenidos a mi Página  Soy Jonathan Aguas</h1>
+</div>
+  <div class="calculadora-container">
+    <h1>Calculadora Estándar</h1>
+
+    <form action="calculadora.php" method="post" class="calculadora" id="formCalc">
+      <input type="text" name="pantalla" id="pantalla" readonly>
+
+      <div class="botones">
+        <button type="button" onclick="agregar('7')">7</button>
+        <button type="button" onclick="agregar('8')">8</button>
+        <button type="button" onclick="agregar('9')">9</button>
+        <button type="button" onclick="agregar('/')">÷</button>
+
+        <button type="button" onclick="agregar('4')">4</button>
+        <button type="button" onclick="agregar('5')">5</button>
+        <button type="button" onclick="agregar('6')">6</button>
+        <button type="button" onclick="agregar('*')">×</button>
+
+        <button type="button" onclick="agregar('1')">1</button>
+        <button type="button" onclick="agregar('2')">2</button>
+        <button type="button" onclick="agregar('3')">3</button>
+        <button type="button" onclick="agregar('-')">−</button>
+
+        <button type="button" onclick="agregar('0')">0</button>
+        <button type="button" onclick="agregar('.')">.</button>
+        <button type="button" onclick="agregar('+')">+</button>
+        <button type="button" onclick="borrar()">C</button>
+
+        <button type="submit" class="igual">=</button>
+      </div>
+
+      <input type="hidden" name="expresion" id="expresion">
+    </form>
+  </div>
+
+  <script>
+    let expresion = "";
+
+    function sync() {
+      document.getElementById("pantalla").value = expresion;
+      document.getElementById("expresion").value = expresion;
+    }
+
+    function agregar(valor) {
+      expresion += valor;
+      sync();
+    }
+
+    function borrar() {
+      expresion = "";
+      sync();
+    }
+
+    // Asegura que antes de enviar se sincronice la expresión
+    document.getElementById('formCalc').addEventListener('submit', function (e) {
+      sync();
+    });
+  </script>
+</body>
+</html>
